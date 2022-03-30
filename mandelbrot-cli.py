@@ -26,6 +26,9 @@ def main():
     parser.add_argument("--threshold", "-T", dest="threshold", type=float, nargs=1, default=[16.0],
                     help="maximum absolute value (squared) that each pixel can reach before being considered divergent")
 
+    parser.add_argument("--show-only", "-S", dest="show_only", action="store_true",
+                    help="do not output the image, but simply display it in a separate window")
+
     args = parser.parse_args()
     
     width = args.width[0]
@@ -37,7 +40,12 @@ def main():
     iterations = args.iterations[0]
     threshold = args.threshold[0]
 
-    render_mandelbrot(width, height, dx, dy, zoom, iterations, threshold).save(filename)
+    render = render_mandelbrot(width, height, dx, dy, zoom, iterations, threshold)
+
+    if args.show_only:
+        render.show()
+    else:
+        render.save(filename)
 
 if __name__ == "__main__":
     main()
