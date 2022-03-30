@@ -1,4 +1,4 @@
-# Mandelbrot Set render
+# Mandelbrot set renderer
 By no means an original premise, here is a home-made Mandelbrot set program written in Python.
 I have written it as both a Python-facing API and a command-line program using `argparse`,
 so you can use it in either manner.
@@ -57,5 +57,5 @@ This exact setup only largely works on Linux, but you may achieve the same thing
 contains the `m̀andelbrot-cli.bat` file to the system `PATH` environment variable.
 
 ## Gallery
-![Mandelbrot set render](mandelbrot.png "Mandelbrot Set")
-![High-res, low-iteration render](high_res.png "High-resolution, lower-iteration render")
+![Mandelbrot set render](assets/mandelbrot.png "Mandelbrot Set")
+![High-res, low-iteration render](assets/high_res.png "High-resolution, lower-iteration render")
