@@ -1,4 +1,6 @@
 import argparse
+import sys
+from io import BytesIO
 from mandelbrot import render_mandelbrot
 
 def main():
@@ -7,9 +9,6 @@ def main():
                     help="width of the output image")
     parser.add_argument("height", type=int, nargs=1,
                     help="height of the output image")
-
-    parser.add_argument("filename", type=str, nargs=1,
-                    help="name of the output file")
 
     parser.add_argument("--zoom", "-Z", dest="zoom", type=float, nargs=1, default=[1.0],
                     help="factor by which to magnify the image, thus zooming into the fractal")
@@ -33,7 +32,6 @@ def main():
     
     width = args.width[0]
     height = args.height[0] if args.height else width
-    filename = args.filename[0]
     zoom = args.zoom[0]
     dx = args.dx[0]
     dy = args.dy[0]
@@ -45,7 +43,9 @@ def main():
     if args.show_only:
         render.show()
     else:
-        render.save(filename)
+        buffer = BytesIO()
+        render.save(buffer, "PNG")
+        sys.stdout.buffer.write(buffer.getvalue())
 
 if __name__ == "__main__":
     main()
